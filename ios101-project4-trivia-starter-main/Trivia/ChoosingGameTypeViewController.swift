@@ -8,6 +8,7 @@
 import UIKit
 
 // this viewcontroller is the one where the user chooses the category and difficulty
+
 class ChoosingGameTypeViewController: UIViewController {
 
     
@@ -66,10 +67,10 @@ class ChoosingGameTypeViewController: UIViewController {
           difficultyPickerView.delegate = self
           difficultyPickerView.dataSource = self
         
+        
         categories = Array(categoryMap.values)
         
         // you would call the api.getcategories here and add them categoryMap
-        
 //        API.fetchTriviaCategories { result in
 //            switch result {
 //            case .success(let categories):
@@ -120,7 +121,8 @@ class ChoosingGameTypeViewController: UIViewController {
 extension ChoosingGameTypeViewController: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-          if pickerView == categoryPickerView {
+        // since we have two pickerviews, we have to see which one is which
+        if pickerView == categoryPickerView {
               return categories[row]
           } else {
               return difficultyLevels[row]

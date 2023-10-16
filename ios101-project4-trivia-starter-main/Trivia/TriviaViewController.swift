@@ -80,9 +80,13 @@ class TriviaViewController: UIViewController {
   }
   
   private func updateToNextQuestion(answer: String) {
+    
     if isCorrectAnswer(answer) {
       numCorrectQuestions += 1
     }
+      
+      
+      
     currQuestionIndex += 1
     guard currQuestionIndex < questions.count else {
       showFinalScore()

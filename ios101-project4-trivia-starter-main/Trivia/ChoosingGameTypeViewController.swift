@@ -7,8 +7,11 @@
 
 import UIKit
 
+// this viewcontroller is the one where the user chooses the category and difficulty
 class ChoosingGameTypeViewController: UIViewController {
 
+    
+    // created these two pickerviews
     @IBOutlet weak var difficultyPickerView: UIPickerView!
     
     @IBOutlet weak var categoryPickerView: UIPickerView!
@@ -65,6 +68,19 @@ class ChoosingGameTypeViewController: UIViewController {
         
         categories = Array(categoryMap.values)
         
+        // you would call the api.getcategories here and add them categoryMap
+        
+//        API.fetchTriviaCategories { result in
+//            switch result {
+//            case .success(let categories):
+//                // Handle fetched categories
+                  // you would modify this to create a hashmap 
+//            case .failure(let error):
+//                // Handle error
+//                print("Error fetching trivia categories: \(error)")
+//            }
+//        }
+        
     }
     
     
@@ -73,7 +89,7 @@ class ChoosingGameTypeViewController: UIViewController {
     // MARK: Preparing for segue
     // overriding this method
     // this method is called right before the segue happens.
-    // this is how we would pass data from one viewcontroller to another 
+    // this is how we would pass data from one viewcontroller to another
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -125,7 +141,6 @@ extension ChoosingGameTypeViewController: UIPickerViewDataSource {
               return difficultyLevels.count
           }
       }
-    
     
 }
 

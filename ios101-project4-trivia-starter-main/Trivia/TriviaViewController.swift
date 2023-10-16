@@ -18,6 +18,13 @@ class TriviaViewController: UIViewController {
   @IBOutlet weak var answerButton2: UIButton!
   @IBOutlet weak var answerButton3: UIButton!
   
+  var selectedCategory: String? = nil
+    var selectedCategoryId: Int?  = nil
+  var selectedDifficulty: String? = nil
+
+
+    
+    
   private var questions = [TriviaQuestion]()
   private var currQuestionIndex = 0
   private var numCorrectQuestions = 0
@@ -27,19 +34,24 @@ class TriviaViewController: UIViewController {
     addGradient()
     questionContainerView.layer.cornerRadius = 8.0
     // TODO: FETCH TRIVIA QUESTIONS HERE
+  
+      // created a new method that takes in the category
       
-      API.fetchTriviaQuestions { res in
-          switch res {
-          case .success(let trivQuestion):
+      API.fetchTriviaQuestions2(category: selectedCategoryId, difficulty: "medium") { result in
+          switch result {
+          case .success(let triviaQuestions):
               DispatchQueue.main.async {
-                  self.questions = trivQuestion
-                  self.updateQuestion(withQuestionIndex: self.currQuestionIndex)
-              }
-            
-          case .failure(let err):
-              print(err.localizedDescription)
+                        self.questions = triviaQuestions
+                        self.updateQuestion(withQuestionIndex: self.currQuestionIndex)
+                }
+          case .failure(let error):
+              // Handle the error
+              print("Error fetching trivia questions: \(error)")
           }
+          
       }
+      
+
   }
   
   private func updateQuestion(withQuestionIndex questionIndex: Int) {
